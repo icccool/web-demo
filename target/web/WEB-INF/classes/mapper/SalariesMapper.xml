@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.mapper.SalariesMapper" >
+  
+  <select id="selectByPrimaryKey" resultType="com.web.model.Salaries" parameterType="java.lang.Integer" >
+    SELECT 
+	     emp_no empNo, 
+	     salary salary, 
+	     from_date fromDate, 
+	     to_date toDate
+    FROM 
+    		salaries
+    WHERE 
+    		emp_no = #{empNo,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

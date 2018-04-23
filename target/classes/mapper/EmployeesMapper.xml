@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.mapper.EmployeesMapper" >
+
+  <resultMap id="BaseResultMap" type="com.web.model.Employees" >
+    <id column="emp_no" property="empNo" jdbcType="INTEGER" />
+    <result column="birth_date" property="birthDate" jdbcType="DATE" />
+    <result column="first_name" property="firstName" jdbcType="VARCHAR" />
+    <result column="last_name" property="lastName" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="CHAR" />
+    <result column="hire_date" property="hireDate" jdbcType="DATE" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    emp_no, birth_date, first_name, last_name, gender, hire_date
+  </sql>
+
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.web.model.Employees" >
+    select
+    <include refid="Base_Column_List" />
+    from employees
+    <where>
+      <if test="empNo != null and empNo != ''" >
+        and emp_no = #{empNo,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from employees
+    where emp_no = #{empNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from employees
+    where emp_no = #{empNo,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.web.model.Employees" >
+    insert into employees (emp_no, birth_date, first_name, 
+      last_name, gender, hire_date
+      )
+    values (#{empNo,jdbcType=INTEGER}, #{birthDate,jdbcType=DATE}, #{firstName,jdbcType=VARCHAR}, 
+      #{lastName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{hireDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.model.Employees" >
+    insert into employees
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="empNo != null" >
+        emp_no,
+      </if>
+      <if test="birthDate != null" >
+        birth_date,
+      </if>
+      <if test="firstName != null" >
+        first_name,
+      </if>
+      <if test="lastName != null" >
+        last_name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="hireDate != null" >
+        hire_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="empNo != null" >
+        #{empNo,jdbcType=INTEGER},
+      </if>
+      <if test="birthDate != null" >
+        #{birthDate,jdbcType=DATE},
+      </if>
+      <if test="firstName != null" >
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="hireDate != null" >
+        #{hireDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.model.Employees" >
+    update employees
+    <set >
+      <if test="birthDate != null" >
+        birth_date = #{birthDate,jdbcType=DATE},
+      </if>
+      <if test="firstName != null" >
+        first_name = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        last_name = #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="hireDate != null" >
+        hire_date = #{hireDate,jdbcType=DATE},
+      </if>
+    </set>
+    where emp_no = #{empNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.model.Employees" >
+    update employees
+    set birth_date = #{birthDate,jdbcType=DATE},
+      first_name = #{firstName,jdbcType=VARCHAR},
+      last_name = #{lastName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      hire_date = #{hireDate,jdbcType=DATE}
+    where emp_no = #{empNo,jdbcType=INTEGER}
+  </update>
+</mapper>
