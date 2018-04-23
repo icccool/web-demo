@@ -31,10 +31,12 @@ public class MybatisTest {
 
 	@Test
 	public void selectByPrimaryKey() {
-		List<Salaries> salaries = salariesMapper.selectByPrimaryKey(10001);
-		for (int i = 0; i < salaries.size(); i++) {
-			Salaries s = salaries.get(i);
-			System.out.println(s.getEmpNo() + " --> " + s.getSalary());
+		if (salariesMapper != null) {
+			List<Salaries> salaries = salariesMapper.selectByPrimaryKey(10001);
+			for (int i = 0; i < salaries.size(); i++) {
+				Salaries s = salaries.get(i);
+				System.out.println(s.getEmpNo() + " --> " + s.getSalary());
+			}
 		}
 
 	}
