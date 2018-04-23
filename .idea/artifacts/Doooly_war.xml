@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Doooly:war">
+    <output-path>$PROJECT_DIR$/../../workspace/Doooly/target</output-path>
+    <root id="archive" name="Doooly.war">
+      <element id="artifact" artifact-name="Doooly:war exploded" />
+    </root>
+  </artifact>
+</component>
