@@ -1,4 +1,5 @@
 package com.web.mapper;
+
 import java.util.List;
 
 import com.web.mapper.SalariesMapper;
@@ -24,9 +25,10 @@ public class SalariesMapperTest {
 
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
 			salariesMapper = ctx.getBean("salariesMapper", SalariesMapper.class);
-			//测试
-//			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring-mybatis.xml");
-//			salariesMapper = ctx.getBean("salariesMapper", SalariesMapper.class);
+			// 测试
+			// ClassPathXmlApplicationContext ctx = new
+			// ClassPathXmlApplicationContext("spring-mybatis.xml");
+			// salariesMapper = ctx.getBean("salariesMapper", SalariesMapper.class);
 
 		} catch (Exception e) {
 			logger.info(e.getMessage());
@@ -35,10 +37,12 @@ public class SalariesMapperTest {
 
 	@Test
 	public void selectByPrimaryKey() {
-		List<Salaries> salaries = salariesMapper.selectByPrimaryKey(10001);
-		for (int i = 0; i < salaries.size(); i++) {
-			Salaries s = salaries.get(i);
-			System.out.println(s.getEmpNo() + " --> " + s.getSalary());
+		if (salariesMapper != null) {
+			List<Salaries> salaries = salariesMapper.selectByPrimaryKey(10001);
+			for (int i = 0; i < salaries.size(); i++) {
+				Salaries s = salaries.get(i);
+				System.out.println(s.getEmpNo() + " --> " + s.getSalary());
+			}
 		}
 
 	}
