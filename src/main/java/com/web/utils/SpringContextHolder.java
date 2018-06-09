@@ -5,15 +5,12 @@
  */
 package com.web.utils;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.stereotype.Service;
 
 /***
