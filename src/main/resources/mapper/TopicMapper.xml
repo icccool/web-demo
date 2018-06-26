@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.mapper.TopicMapper" >
+
+    <insert id="insert">
+
+        INSERT INTO t_topic
+        (
+            class_id,
+            title,
+            body,
+            user_id,
+            reply_count,
+            modified_by,
+            modified_on,
+            replied_by,
+            replied_on,
+            is_close,
+            ip,
+            create_time
+        )
+        VALUES
+        (
+             #{classId},
+             #{title},
+             #{body},
+             #{userId},
+             #{replyCount},
+             #{modifiedBy},
+             #{modifiedOn},
+             #{repliedBy},
+             #{repliedOn},
+             #{isClose},
+             #{ip},
+             #{createTime}
+         )
+    </insert>
+
+    <select id="getTopicList">
+        SELECT
+            class_id classId,
+            title title,
+            body body,
+            user_id userId,
+            reply_count replyCount,
+            modified_by modifiedBy,
+            modified_on modifiedOn,
+            replied_by repliedBy,
+            replied_on repliedOn,
+            is_close isClose,
+            ip ip,
+            create_time createTime
+      FROM
+            t_topic
+      ORDER  BY create_time desc limit 0,10
+
+    </select>
+</mapper>
