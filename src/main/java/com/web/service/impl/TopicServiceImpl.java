@@ -99,6 +99,7 @@ public class TopicServiceImpl implements TopicService, DisposableBean {
         }
         //数据不足从redis取
         int size = PAGE_SIZE - qsize;
+        long s = System.currentTimeMillis();
         if (size > 0) {
             ListOperations<String, String> ls = redisTemplate.opsForList();
             List<String> cacheList = ls.range(TOPIC_LIST_KEY, 0, size - 1);
@@ -106,6 +107,7 @@ public class TopicServiceImpl implements TopicService, DisposableBean {
                 topicPage.add(JSON.parseObject(cacheList.get(i), Topic.class));
             }
         }
+        logger.info("get from reids,size={},cost={}", size, System.currentTimeMillis() - s);
         return topicPage;
     }
 
