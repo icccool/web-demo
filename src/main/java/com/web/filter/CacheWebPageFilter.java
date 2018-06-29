@@ -1,24 +1,13 @@
 package com.web.filter;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.redis.connection.RedisConnection;
-import org.springframework.data.redis.core.RedisCallback;
+import com.web.utils.SpringContextHolder;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.StringUtils;
 
-import com.web.utils.SpringContextHolder;
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 缓存web页面<br>
@@ -52,7 +41,7 @@ public class CacheWebPageFilter implements Filter {
 					// 渲染页面并缓存
 					chain.doFilter(req, wrapper);
 					cacheHtml = wrapper.getResult();
-					redisTemplate.opsForValue().set(cacheId, cacheHtml, 60 * 1000);
+					redisTemplate.opsForValue().set(cacheId, cacheHtml, 1000);
 				}
 				// 返回响应
 				resp.setContentType("text/html; charset=utf-8");

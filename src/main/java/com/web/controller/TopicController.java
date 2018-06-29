@@ -8,10 +8,11 @@ import com.web.utils.JsonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -20,16 +21,18 @@ import java.util.List;
 /**
  * Created by WANG on 2018/6/7.
  */
-@RestController
+@Controller
 @RequestMapping(value = "/topic")
 public class TopicController {
 
     private final static Logger logger = LoggerFactory.getLogger(TopicController.class);
+
     @Autowired
     private TopicService topicService;
 
     @RequestMapping(value = "/addTopic", method = RequestMethod.POST)
-    public JsonResult addTopic(@RequestBody Topic topic, HttpServletRequest request) {
+    @ResponseBody
+    public  JsonResult addTopic(@RequestBody Topic topic, HttpServletRequest request) {
         JsonResult result = new JsonResult();
         topic.setIp(getIpAddr(request));
         topic.setCreateTimeStr(DateUtil.format(new Date(),"yyyy-MM-dd HH:mm:ss SSS"));
@@ -39,6 +42,7 @@ public class TopicController {
     }
 
     @RequestMapping(value = "/topicList", method = RequestMethod.GET)
+    @ResponseBody
     public JsonResult topicList(HttpServletRequest request) {
         String ip = getIpAddr(request);
         List list = topicService.getTopicList();
@@ -50,6 +54,7 @@ public class TopicController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @ResponseBody
     public JsonResult save(@RequestBody Topic topic, HttpServletRequest request) {
         String key = request.getParameter("key");
         if ("74110".equals(key)) {
