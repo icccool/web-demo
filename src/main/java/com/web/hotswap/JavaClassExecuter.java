@@ -1,8 +1,5 @@
 package com.web.hotswap;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
@@ -25,19 +22,6 @@ public class JavaClassExecuter {
 		HackSystem.clearBuffer();
 		ClassModifier cm = new ClassModifier(classByte);
 		byte[] modiBytes = cm.modifyUTF8Constant("java/lang/System", "com/web/hotswap/HackSystem");
-		
-		//修改后的文件保存到硬盘
-		try {
-			FileOutputStream out = new FileOutputStream("d:/TestClass.class");
-			out.write(modiBytes, 0, modiBytes.length);
-			out.flush();
-			out.close();
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 		
 		HotSwapClassLoader loader = new HotSwapClassLoader();
 		Class clazz = loader.loadByte(modiBytes);

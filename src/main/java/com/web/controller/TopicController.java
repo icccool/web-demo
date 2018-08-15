@@ -33,6 +33,7 @@ public class TopicController {
     @RequestMapping(value = "/addTopic", method = RequestMethod.POST)
     @ResponseBody
     public  JsonResult addTopic(@RequestBody Topic topic, HttpServletRequest request) {
+
         JsonResult result = new JsonResult();
         topic.setIp(getIpAddr(request));
         topic.setCreateTimeStr(DateUtil.format(new Date(),"yyyy-MM-dd HH:mm:ss SSS"));
@@ -44,6 +45,7 @@ public class TopicController {
     @RequestMapping(value = "/topicList", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult topicList(HttpServletRequest request) {
+        String path = this.getClass().getResource("/").toString();
         String ip = getIpAddr(request);
         List list = topicService.getTopicList();
         logger.info("topicList() ip={},list.size={}", ip, list.size());

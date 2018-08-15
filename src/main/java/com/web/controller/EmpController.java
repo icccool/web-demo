@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,11 +36,7 @@ public class EmpController {
 		System.out.println("--------------------START------------------------");
 		String ip = getRemoteHost(request);
 		logger.info("======= ip => {}" , ip);
-		WebApplicationContext ctx = (WebApplicationContext)request.getSession().getServletContext().getAttribute("org.springframework.web.context.WebApplicationContext.ROOT");
-		String[] names = ctx.getBeanDefinitionNames();
-		for (String name : names){
-			System.out.println(name);
-		}
+		logger.info("======= classLoader => {}" , empServiceImpl.getClass().getClassLoader());
 		System.out.println("--------------------END------------------------");
 
 		ModelAndView model = new ModelAndView("/jsp/emp/empList");
