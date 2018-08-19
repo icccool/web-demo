@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.web.mapper.TopicMapper" >
+<mapper namespace="com.web.mapper.topic.TopicMapper" >
 
     <insert id="insert">
 
@@ -36,7 +36,7 @@
          )
     </insert>
 
-    <select id="getTopicList">
+    <select resultType="com.web.model.Topic" id="getTopicList">
         SELECT
             class_id classId,
             title title,

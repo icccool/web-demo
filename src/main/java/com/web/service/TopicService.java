@@ -11,7 +11,6 @@ import java.util.List;
 public interface TopicService {
 
     public int insert(Topic topic);
-    public void saveTopic(Topic topicList);
-    public void save();
+
     public List<Topic> getTopicList();
 }

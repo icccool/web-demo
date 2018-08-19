@@ -2,7 +2,7 @@ package com.web.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.web.controller.TopicController;
-import com.web.mapper.TopicMapper;
+import com.web.mapper.topic.TopicMapper;
 import com.web.model.Topic;
 import com.web.service.TopicService;
 import org.slf4j.Logger;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ import java.util.concurrent.Executors;
 /**
  * Created by WANG on 2018/6/7.
  */
-@Service
+//@Service
 public class TopicServiceImpl implements TopicService, DisposableBean {
 
     private final static Logger logger = LoggerFactory.getLogger(TopicController.class);
@@ -54,7 +53,6 @@ public class TopicServiceImpl implements TopicService, DisposableBean {
         return topicMapper.insert(topic);
     }
 
-    @Override
     public void saveTopic(Topic topic) {
         logger.info("saveTopic() topic={}", topic);
         long start = System.currentTimeMillis();
@@ -67,7 +65,6 @@ public class TopicServiceImpl implements TopicService, DisposableBean {
         logger.info("saveTopic() topicQueue.size={},topic={},cost={}", topicQueue.size(), topic, System.currentTimeMillis() - start);
     }
 
-    @Override
     public void save(){
         final List<Topic> tmp = new ArrayList<Topic>(topicQueue);
         singleThread.execute(new Runnable() {

@@ -1,7 +1,7 @@
 package com.web.mapper;
 
-import java.util.List;
-
+import com.web.mapper.emp.SalariesMapper;
+import com.web.model.Salaries;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.Log4jConfigurer;
 
-import com.web.model.Salaries;
+import java.util.List;
 
 public class MybatisTest {
 	private static final Logger logger = LoggerFactory.getLogger(SalariesMapperTest.class);

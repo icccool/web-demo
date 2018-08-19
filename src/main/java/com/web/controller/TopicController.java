@@ -33,11 +33,10 @@ public class TopicController {
     @RequestMapping(value = "/addTopic", method = RequestMethod.POST)
     @ResponseBody
     public  JsonResult addTopic(@RequestBody Topic topic, HttpServletRequest request) {
-
         JsonResult result = new JsonResult();
         topic.setIp(getIpAddr(request));
         topic.setCreateTimeStr(DateUtil.format(new Date(),"yyyy-MM-dd HH:mm:ss SSS"));
-        topicService.saveTopic(topic);
+        topicService.insert(topic);
         result.setStatus(JsonResult.SUC_CODE);
         return result;
     }
@@ -53,18 +52,6 @@ public class TopicController {
         result.setStatus(JsonResult.SUC_CODE);
         result.setResult(list);
         return result;
-    }
-
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
-    @ResponseBody
-    public JsonResult save(@RequestBody Topic topic, HttpServletRequest request) {
-        String key = request.getParameter("key");
-        if ("74110".equals(key)) {
-            topicService.save();
-            return new JsonResult(JsonResult.SUC_CODE, null);
-        } else {
-            return new JsonResult(JsonResult.FAL_CODE, null);
-        }
     }
 
     /***

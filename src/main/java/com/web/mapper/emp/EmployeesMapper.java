@@ -1,4 +1,4 @@
-package com.web.mapper;
+package com.web.mapper.emp;
 
 
 import com.web.model.Employees;
