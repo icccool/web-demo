@@ -30,13 +30,26 @@
 		后面三个是用来处理异常的解析器。 
 	-->
 
-	<mvc:annotation-driven>
-
+	<mvc:annotation-driven validator="validator">
 		<mvc:return-value-handlers>
 			<bean class="com.web.handler.EmployeesHandler"/>
 		</mvc:return-value-handlers>
-
 	</mvc:annotation-driven>
+	
+	
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	
+	<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+		<!--不设置则默认为classpath下的ValidationMessages.properties -->
+		<property name="validationMessageSource" ref="validatemessageSource" />
+	</bean>
+	
+	<bean id="validatemessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:validatemessages" />
+		<property name="fileEncodings" value="utf-8" />
+		<property name="cacheSeconds" value="120" />
+	</bean> 
+	
 	
 	<!--错误处理  
 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">

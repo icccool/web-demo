@@ -2,157 +2,173 @@ package com.web.model;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * 帖子
  */
 public class Topic {
 
-    private int id;
-    private int classId;
-    private String title;
-    private String body;
-    private int userId;
-    private int hits;
-    private int replyCount;
-    private int modifiedBy;
-    private Date modifiedOn;
-    private int repliedBy;
-    private Date repliedOn;
-    private short isClose;
-    private String ip;
+	private int id;
+	
+	private int classId;
 
-    private String createTimeStr;
+	@NotEmpty
+	private String title;
+	
+	@NotEmpty
+	private String body;
 
-    public int getId() {
-        return id;
-    }
+	private int userId;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	private int hits;
 
-    public int getClassId() {
-        return classId;
-    }
+	private int replyCount;
 
-    public void setClassId(int classId) {
-        this.classId = classId;
-    }
+	private int modifiedBy;
 
+	private Date modifiedOn;
 
-    public int getUserId() {
-        return userId;
-    }
+	private int repliedBy;
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	private Date repliedOn;
 
-    public int getHits() {
-        return hits;
-    }
+	private short isClose;
 
-    public void setHits(int hits) {
-        this.hits = hits;
-    }
+	private String ip;
 
-    public int getReplyCount() {
-        return replyCount;
-    }
+	private String createTimeStr;
+	
+	//验证码
+	private String verfyCode;
+	
 
-    public void setReplyCount(int replyCount) {
-        this.replyCount = replyCount;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public int getModifiedBy() {
-        return modifiedBy;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setModifiedBy(int modifiedBy) {
-        this.modifiedBy = modifiedBy;
-    }
+	public int getClassId() {
+		return classId;
+	}
 
-    public Date getModifiedOn() {
-        return modifiedOn;
-    }
+	public void setClassId(int classId) {
+		this.classId = classId;
+	}
 
-    public void setModifiedOn(Date modifiedOn) {
-        this.modifiedOn = modifiedOn;
-    }
+	public int getUserId() {
+		return userId;
+	}
 
-    public int getRepliedBy() {
-        return repliedBy;
-    }
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-    public void setRepliedBy(int repliedBy) {
-        this.repliedBy = repliedBy;
-    }
+	public int getHits() {
+		return hits;
+	}
 
-    public Date getRepliedOn() {
-        return repliedOn;
-    }
+	public void setHits(int hits) {
+		this.hits = hits;
+	}
 
-    public void setRepliedOn(Date repliedOn) {
-        this.repliedOn = repliedOn;
-    }
+	public int getReplyCount() {
+		return replyCount;
+	}
 
-    public short getIsClose() {
-        return isClose;
-    }
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
 
-    public void setIsClose(short isClose) {
-        this.isClose = isClose;
-    }
+	public int getModifiedBy() {
+		return modifiedBy;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setModifiedBy(int modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public Date getModifiedOn() {
+		return modifiedOn;
+	}
 
-    public String getBody() {
-        return body;
-    }
+	public void setModifiedOn(Date modifiedOn) {
+		this.modifiedOn = modifiedOn;
+	}
 
-    public void setBody(String body) {
-        this.body = body;
-    }
+	public int getRepliedBy() {
+		return repliedBy;
+	}
 
-    public String getIp() {
-        return ip;
-    }
+	public void setRepliedBy(int repliedBy) {
+		this.repliedBy = repliedBy;
+	}
 
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
+	public Date getRepliedOn() {
+		return repliedOn;
+	}
 
-    public String getCreateTimeStr() {
-        return createTimeStr;
-    }
+	public void setRepliedOn(Date repliedOn) {
+		this.repliedOn = repliedOn;
+	}
 
-    public void setCreateTimeStr(String createTimeStr) {
-        this.createTimeStr = createTimeStr;
-    }
+	public short getIsClose() {
+		return isClose;
+	}
 
-    @Override
-    public String toString() {
-        return "Topic{" +
-                "id=" + id +
-                ", classId=" + classId +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", userId=" + userId +
-                ", hits=" + hits +
-                ", replyCount=" + replyCount +
-                ", modifiedBy=" + modifiedBy +
-                ", modifiedOn=" + modifiedOn +
-                ", repliedBy=" + repliedBy +
-                ", repliedOn=" + repliedOn +
-                ", isClose=" + isClose +
-                ", ip='" + ip + '\'' +
-                ", createTimeStr='" + createTimeStr + '\'' +
-                '}';
-    }
+	public void setIsClose(short isClose) {
+		this.isClose = isClose;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public String getCreateTimeStr() {
+		return createTimeStr;
+	}
+
+	public void setCreateTimeStr(String createTimeStr) {
+		this.createTimeStr = createTimeStr;
+	}
+
+	
+	public String getVerfyCode() {
+		return verfyCode;
+	}
+
+	public void setVerfyCode(String verfyCode) {
+		this.verfyCode = verfyCode;
+	}
+
+	@Override
+	public String toString() {
+		return "Topic{" + "id=" + id + ", classId=" + classId + ", title='" + title + '\'' + ", body='" + body + '\''
+				+ ", userId=" + userId + ", hits=" + hits + ", replyCount=" + replyCount + ", modifiedBy=" + modifiedBy
+				+ ", modifiedOn=" + modifiedOn + ", repliedBy=" + repliedBy + ", repliedOn=" + repliedOn + ", isClose="
+				+ isClose + ", ip='" + ip + '\'' + ", createTimeStr='" + createTimeStr + '\'' + '}';
+	}
 }

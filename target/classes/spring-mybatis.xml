@@ -9,8 +9,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 	>
-	
-	<!-- 数据源 配置 -->
+
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">   
     	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
     	<property name="url" value="jdbc:mysql://47.96.154.183:3306/employees" />
@@ -18,26 +17,52 @@
     	<property name="password" value="w5571393#" />
 	</bean>
 
+	<bean id="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://47.96.154.183:3306/yungroups" />
+		<property name="username" value="root" />
+		<property name="password" value="w5571393#" />
+	</bean>
+
 	<!-- 配置MyBatis映射文件 -->
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"></property>
+        <property name="mapperLocations" value="classpath:mapper/emp/*Mapper.xml"></property>
 		<property name="plugins">
 			<array>
 				<bean class="com.github.pagehelper.PageHelper">
 					<property name="properties">
-						<value>
-							dialect=mysql
-						</value>
+						<value>dialect=mysql</value>
 					</property>
 				</bean>
 			</array>
 		</property>
 	</bean>
-	
+
+	<bean id="sessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource2" />
+		<property name="mapperLocations" value="classpath:mapper/topic/*Mapper.xml"></property>
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>dialect=mysql</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+
+
 	<!-- mybatis接口 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.web.mapper" />
+		<property name="basePackage" value="com.web.mapper.emp" />
+		<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.web.mapper.topic" />
+		<property name="sqlSessionFactoryBeanName" value="sessionFactory2"></property>
 	</bean>
 	
 </beans>

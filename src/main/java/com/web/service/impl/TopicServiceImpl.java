@@ -19,6 +19,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
+ * save to redis
+ * 
  * Created by WANG on 2018/6/7.
  */
 //@Service

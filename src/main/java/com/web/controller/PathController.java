@@ -1,9 +1,9 @@
 package com.web.controller;
 
 
-import com.web.service.TopicService;
-import com.web.utils.JsonResult;
-import com.web.utils.PathUtil;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
+import com.web.service.TopicService;
+import com.web.utils.JsonResult;
+import com.web.utils.PathUtil;
 
 /**
  * Created by WANG on 2018/6/7.
@@ -39,9 +40,6 @@ public class PathController {
         String realPath = servletContext.getRealPath("/config");
         System.out.println("realPath1===" + PathUtil.getWebRootPath());
 
-        JsonResult result = new JsonResult();
-        result.setStatus("ok");
-        result.setResult(this.getClass().getClassLoader().getResource("").getPath());
-        return result;
+        return new JsonResult(JsonResult.SUC_CODE,this.getClass().getClassLoader().getResource("").getPath());
     }
 }
