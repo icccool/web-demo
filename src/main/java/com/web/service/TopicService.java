@@ -2,6 +2,7 @@ package com.web.service;
 
 
 import com.web.model.Topic;
+import com.web.model.vo.TopicVo;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface TopicService {
 
     public int insert(Topic topic);
 
-    public List<Topic> getTopicList();
+    public List<TopicVo> getTopicList();
 }

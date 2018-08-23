@@ -36,19 +36,11 @@
          )
     </insert>
 
-    <select resultType="com.web.model.Topic" id="getTopicList">
+    <select resultType="com.web.model.vo.TopicVo" id="getTopicList">
         SELECT
-            class_id classId,
+            id id,
             title title,
             body body,
-            user_id userId,
-            reply_count replyCount,
-            modified_by modifiedBy,
-            modified_on modifiedOn,
-            replied_by repliedBy,
-            replied_on repliedOn,
-            is_close isClose,
-            ip ip,
             create_time createTime
       FROM
             t_topic

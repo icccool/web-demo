@@ -1,6 +1,7 @@
 package com.web.controller;
 
 import com.web.model.Topic;
+import com.web.model.vo.TopicVo;
 import com.web.service.TopicService;
 import com.web.utils.JsonResult;
 import org.slf4j.Logger;
@@ -35,6 +36,8 @@ public class TopicController {
 	@RequestMapping(value = "/addTopic", method = RequestMethod.POST)
 	@ResponseBody
 	public JsonResult addTopic(@RequestBody @Valid Topic topic, BindingResult result, HttpServletRequest request) {
+		logger.info("addTopic() start");
+		long t = System.currentTimeMillis();
 		if (result.hasErrors()) {
 			StringBuffer sbf = new StringBuffer();
 			for (ObjectError err : result.getAllErrors()) {
@@ -42,9 +45,12 @@ public class TopicController {
 			}
 			return new JsonResult(JsonResult.FAL_CODE, sbf.toString());
 		}
-		topic.setIp(getIpAddr(request));
+		//验证码校验
+		String ip = getIpAddr(request);
+		topic.setIp(ip);
 		topic.setCreateTime(new Date());
 		int i = topicService.insert(topic);
+		logger.info("addTopic() ip={},i={},cost={}", ip, i, System.currentTimeMillis() - t);
 		if (i > 0) {
 			return new JsonResult(JsonResult.SUC_CODE, JsonResult.SUC_MSG);
 		} else {
@@ -52,13 +58,21 @@ public class TopicController {
 		}
 	}
 
+
+	@RequestMapping(value = "/toTopicList", method = RequestMethod.GET)
+	public String toTopicList(HttpServletRequest request) {
+		return  "/html/topic/topicList.html";
+	}
+
+
 	@RequestMapping(value = "/topicList", method = RequestMethod.GET)
 	@ResponseBody
 	public JsonResult topicList(HttpServletRequest request) {
 		long t = System.currentTimeMillis();
 		logger.info("topicList() start");
+		//生成验证码
 		String ip = getIpAddr(request);
-		List<Topic> list = topicService.getTopicList();
+		List<TopicVo> list = topicService.getTopicList();
 		if (!CollectionUtils.isEmpty(list)) {
 			logger.info("topicList() ip={},list.size={},cost={}", ip, list.size(), System.currentTimeMillis() - t);
 			return new JsonResult(JsonResult.SUC_CODE, JsonResult.SUC_MSG, list);

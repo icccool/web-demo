@@ -40,6 +40,7 @@ public class Topic {
 	private Date createTime;
 	
 	//验证码
+	@NotEmpty
 	private String verfyCode;
 	
 
