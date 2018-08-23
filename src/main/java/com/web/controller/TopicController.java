@@ -1,11 +1,8 @@
 package com.web.controller;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
+import com.web.model.Topic;
+import com.web.service.TopicService;
+import com.web.utils.JsonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.web.model.Topic;
-import com.web.service.TopicService;
-import com.web.utils.DateUtil;
-import com.web.utils.JsonResult;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by WANG on 2018/6/7.
@@ -46,7 +43,7 @@ public class TopicController {
 			return new JsonResult(JsonResult.FAL_CODE, sbf.toString());
 		}
 		topic.setIp(getIpAddr(request));
-		topic.setCreateTimeStr(DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss SSS"));
+		topic.setCreateTime(new Date());
 		int i = topicService.insert(topic);
 		if (i > 0) {
 			return new JsonResult(JsonResult.SUC_CODE, JsonResult.SUC_MSG);
@@ -58,10 +55,12 @@ public class TopicController {
 	@RequestMapping(value = "/topicList", method = RequestMethod.GET)
 	@ResponseBody
 	public JsonResult topicList(HttpServletRequest request) {
+		long t = System.currentTimeMillis();
+		logger.info("topicList() start");
 		String ip = getIpAddr(request);
 		List<Topic> list = topicService.getTopicList();
 		if (!CollectionUtils.isEmpty(list)) {
-			logger.info("topicList() ip={},list.size={}", ip, list.size());
+			logger.info("topicList() ip={},list.size={},cost={}", ip, list.size(), System.currentTimeMillis() - t);
 			return new JsonResult(JsonResult.SUC_CODE, JsonResult.SUC_MSG, list);
 		} else {
 			logger.info("topicList() list is empty.");

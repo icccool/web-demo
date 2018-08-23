@@ -1,8 +1,8 @@
 package com.web.model;
 
-import java.util.Date;
-
 import org.hibernate.validator.constraints.NotEmpty;
+
+import java.util.Date;
 
 /**
  * 帖子
@@ -37,7 +37,7 @@ public class Topic {
 
 	private String ip;
 
-	private String createTimeStr;
+	private Date createTime;
 	
 	//验证码
 	private String verfyCode;
@@ -147,15 +147,14 @@ public class Topic {
 		this.ip = ip;
 	}
 
-	public String getCreateTimeStr() {
-		return createTimeStr;
+	public Date getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreateTimeStr(String createTimeStr) {
-		this.createTimeStr = createTimeStr;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
-	
 	public String getVerfyCode() {
 		return verfyCode;
 	}
@@ -166,9 +165,22 @@ public class Topic {
 
 	@Override
 	public String toString() {
-		return "Topic{" + "id=" + id + ", classId=" + classId + ", title='" + title + '\'' + ", body='" + body + '\''
-				+ ", userId=" + userId + ", hits=" + hits + ", replyCount=" + replyCount + ", modifiedBy=" + modifiedBy
-				+ ", modifiedOn=" + modifiedOn + ", repliedBy=" + repliedBy + ", repliedOn=" + repliedOn + ", isClose="
-				+ isClose + ", ip='" + ip + '\'' + ", createTimeStr='" + createTimeStr + '\'' + '}';
+		return "Topic{" +
+				"id=" + id +
+				", classId=" + classId +
+				", title='" + title + '\'' +
+				", body='" + body + '\'' +
+				", userId=" + userId +
+				", hits=" + hits +
+				", replyCount=" + replyCount +
+				", modifiedBy=" + modifiedBy +
+				", modifiedOn=" + modifiedOn +
+				", repliedBy=" + repliedBy +
+				", repliedOn=" + repliedOn +
+				", isClose=" + isClose +
+				", ip='" + ip + '\'' +
+				", createTime=" + createTime +
+				", verfyCode='" + verfyCode + '\'' +
+				'}';
 	}
 }

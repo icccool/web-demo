@@ -11,12 +11,12 @@ public class TestClass {
 		System.out.println("hello world!!!");
 		System.out.println("--------------------------------------<br>");
 		ApplicationContext ctx = SpringContextHolder.getApplicationContext();
-		System.out.println("ctx: " + ctx+"<br>");
+		System.out.println("ctx: " + ctx + "<br>");
 		for (String str : ctx.getBeanDefinitionNames()) {
 			Class clz = ctx.getBean(str).getClass();
 			Annotation[] annotation = clz.getAnnotationsByType(Controller.class);
 			if (annotation != null) {
-				System.out.println("[" + str + "]==>" + clz+"<br>");
+				System.out.println("[" + str + "]==>" + clz + "<br>");
 			}
 		}
 		System.out.println("--------------------------------------<br>");

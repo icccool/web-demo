@@ -19,9 +19,9 @@
 
 	<bean id="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://47.96.154.183:3306/yungroups" />
+		<property name="url" value="jdbc:mysql://118.184.32.42:3306/yungroups" />
 		<property name="username" value="root" />
-		<property name="password" value="w5571393#" />
+		<property name="password" value="w5571393" />
 	</bean>
 
 	<!-- 配置MyBatis映射文件 -->
