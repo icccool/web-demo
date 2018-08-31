@@ -1,6 +1,6 @@
 package com.web.controller;
 
-import com.google.code.kaptcha.Constants;
+import com.web.utils.VerifyCodeUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,27 +18,24 @@ import java.io.PrintWriter;
 public class CaptchaController {
 
 
-    protected void setResponseHeaders(HttpServletResponse response) {
-        response.setContentType("image/jpeg");
-        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-        response.setHeader("Pragma", "no-cache");
-        long time = System.currentTimeMillis();
-        response.setDateHeader("Last-Modified", time);
-        response.setDateHeader("Date", time);
-        response.setDateHeader("Expires", time);
-    }
-
     @RequestMapping(value = "/getPatchcaImage")
     public void getPatchcaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        HttpSession session = request.getSession(false);
-        if (session == null) {
-            session = request.getSession();
-        }
-        setResponseHeaders(response);
-        String token = null;
-        session.setAttribute("captchaToken", token);
-        System.out.println("当前的 sessionId:" + session.getId() + ",验证码：" + token);
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.setContentType("image/jpeg");
+
+        //生成随机字串
+        String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
+        //存入会话session
+        HttpSession session = request.getSession(true);
+        //删除以前的
+        session.removeAttribute("verifyCode");
+        session.setAttribute("verifyCode", verifyCode.toLowerCase());
+        //生成图片
+        int w = 100, h = 30;
+        VerifyCodeUtils.outputImage(w, h, response.getOutputStream(), verifyCode);
     }
 
 
@@ -47,7 +44,7 @@ public class CaptchaController {
 
         boolean flag = false;
         String authcode = res.getParameter("code");
-        String code = (String) res.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);        //获取生成的验证码
+        String code = (String) res.getSession().getAttribute("KAPTCHA_SESSION_KEY");        //获取生成的验证码
         System.out.println(authcode + "," + code);
         if ((code.toUpperCase()).equals(authcode.toUpperCase())) {
             flag = true;
