@@ -61,7 +61,7 @@ public class TopicController {
 
 	@RequestMapping(value = "/toTopicList", method = RequestMethod.GET)
 	public String toTopicList(HttpServletRequest request) {
-		return  "/html/topic/topicList.html";
+		return "jsp/topic/topicList";
 	}
 
 
