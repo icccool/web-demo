@@ -22,7 +22,7 @@
     <!-- 超时时间10000毫秒 不支持重试 -->
     <dubbo:provider timeout="10000" retries="0"/>
     
-    <dubbo:service interface="com.web.service.SalariesService" ref="salariesService"  protocol="dubbo"  scope="remote" version="${dubbo.version}"/>
+    <dubbo:service interface="com.web.service.SalariesService" ref="salariesService"  protocol="dubbo"  scope="remote" version="1.0"/>
     <bean id="salariesService" class="com.web.service.impl.SalariesServiceImpl"/>
     
     

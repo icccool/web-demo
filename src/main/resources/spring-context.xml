@@ -42,9 +42,9 @@
 	<import resource="classpath:spring-mybatis.xml" />
 	<!-- springMvc-->
 	<import resource="classpath:spring-mvc.xml" />
-	<!-- duboo-provider 
+
 	<import resource="classpath:dubbo-provider.xml" />
-	-->
+
 	<!-- redis -->
 	<import resource="classpath:spring-redis.xml" />
 </beans>
