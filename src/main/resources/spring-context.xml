@@ -43,8 +43,9 @@
 	<!-- springMvc-->
 	<import resource="classpath:spring-mvc.xml" />
 
-	<import resource="classpath:dubbo-provider.xml" />
+	<!--<import resource="classpath:dubbo-provider.xml" />-->
 
 	<!-- redis -->
 	<import resource="classpath:spring-redis.xml" />
+
 </beans>
