@@ -8,35 +8,34 @@
 %>         
 <!DOCTYPE html>
 <html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>局部打印案例</title>
+
     <script type="text/javascript">
         function doPrint() {
-            bdhtml=window.document.body.innerHTML;
-            sprnstr="<!--startprint-->";
-            eprnstr="<!--endprint-->";
-            prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
-            prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
-            window.document.body.innerHTML=prnhtml;
-            window.print();
+            $.ajax({
+                type:"GET",
+                url:"/report/demoReport2.do",
+                dataType:"html",
+                success:function(data){
+                    //$("#showReport").html("<p2>以下打印的内容</p2><br>");
+                    //$("#showReport").html(data);
+                    window.document.body.innerHTML=data;
+                    window.print();
+                },
+                error:function(jqXHR){
+                    console.log("Error: "+jqXHR.status);
+                }
+            });
         }
     </script>
 </head>
 
 <body>
 
-    <p>1不需要打印的地方</p>
-    <p>2这里不要打印啊</p>
-
-    <!--startprint--><!--注意要加上html里star和end的这两个标记-->
-    <h1>打印标题</h1>
-    <p>打印内容~~</p>
-    <!--endprint-->
-
     <button type="button" onclick="doPrint()">打印</button>
-    <p>不打印的地方啊哈哈哈哈</p>
-    <p>2</p>
 
 </body>
 </html>

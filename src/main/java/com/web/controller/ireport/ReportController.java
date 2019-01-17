@@ -8,6 +8,7 @@ import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,11 @@ import java.util.*;
 @RequestMapping("/report")
 public class ReportController {
 
+
+    @RequestMapping("/reportIndex.do")
+    public ModelAndView reportIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return new ModelAndView("jsp/ireport/ireport");
+    }
 
     @RequestMapping("/demoReport2.do")
     public void demoReport2(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -47,7 +53,6 @@ public class ReportController {
         JasperHelper.showHtml(exportFilePath, reportFile.getPath(), request, response, parameters, new JREmptyDataSource());
 //            JasperRunManager.runReportToPdfStream(isRef, os, parameters, new JREmptyDataSource());
 //            response.setContentType("application/pdf");
-
 
     }
 
