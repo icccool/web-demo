@@ -329,13 +329,10 @@ public class JasperHelper {
                                 HttpServletRequest request, HttpServletResponse response, Map parameters,
                                 Connection conn) throws JRException, IOException {
 
-
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html");
-
         JRAbstractExporter exporter = getJRExporter(DocType.HTML);
-
         JasperPrint jasperPrint = JasperFillManager.fillReport(reportfile,
                 parameters, conn);
         request.getSession().setAttribute(
@@ -343,7 +340,6 @@ public class JasperHelper {
                 jasperPrint);
 
         PrintWriter out = response.getWriter();
-
         exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
         exporter.setParameter(JRExporterParameter.OUTPUT_WRITER, out);
         exporter.setParameter(
