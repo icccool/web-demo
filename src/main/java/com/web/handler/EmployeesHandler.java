@@ -24,7 +24,6 @@ public class EmployeesHandler implements HandlerMethodReturnValueHandler {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-
     @Override
     public boolean supportsReturnType(MethodParameter returnType) {
         Class<?> type = returnType.getParameterType();
