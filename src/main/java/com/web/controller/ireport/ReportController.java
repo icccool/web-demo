@@ -75,9 +75,9 @@ public class ReportController {
         //指定導出文件名稱
         String exportFilePath = "table_export_test";
         //調用工具類
-//        JasperHelper.showPdf(exportFilePath, reportFile.getPath(), request, response, map,jrDataSource);
-        JasperHelper.showHtml(exportFilePath , reportFile.getPath(), request,response, map, jrDataSource);
-        //JasperHelper.export("excel", exportFilePath, reportFile, request, response, map, jrDataSource);
+        JasperHelper.showPdf(exportFilePath, reportFile.getPath(), request, response, map,jrDataSource);
+//        JasperHelper.showHtml(exportFilePathortFilePath , reportFile.getPath(), request,response, map, jrDataSource);
+//        JasperHelper.export("excel", exportFilePath, reportFile, request, response, map, jrDataSource);
 
     }
 

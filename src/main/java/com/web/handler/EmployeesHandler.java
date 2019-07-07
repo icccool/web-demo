@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class EmployeesHandler implements HandlerMethodReturnValueHandler {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public boolean supportsReturnType(MethodParameter returnType) {

@@ -18,7 +18,10 @@
 <p/>
 <p2>报表demo2</p2>   <a href="/report/demoReport2.do">报表demo2</a>
 <p/>
-<p2>报表demo2[打印]</p2>   <a href="/report/reportIndex.do">报表demo2打印</a>
+<p2>报表demo2[打印表格]</p2>   <a href="/report/reportIndex.do">报表demo2打印</a>
+<p/>
+<p2>报表demo2[打印列表]</p2>   <a href="/report/report.do">报表demo2列表</a>
+
 
 </body>
 </html>
